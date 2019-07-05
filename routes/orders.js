@@ -1,13 +1,13 @@
 const router = require('express').Router();
 const models = require('../models');
 
-const User = models.Orders;
+const Orders = models.Orders;
 
-router.get('/', (req, resp)=>{ 
-    User.finAll()
-    .then(orders => console.log(orders))
-
-    //res.send('Teste')
+router.get("/" , (req, res)=>{ Orders.finAll()
+    .then(orders => {
+        const ordersList = orders.map(orders => orders.dataValues)
+        res.send(ordersList)
+    });
 })
 
 module.exports = router;

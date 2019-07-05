@@ -3,11 +3,11 @@ const models = require('../models');
 
 const User = models.User;
 
-router.get('/', (req, resp)=>{ 
-    User.finAll()
-    .then(user => console.log(user))
-    //res.send('Teste')
-    
+router.get("/" , (req, res)=>{ User.finAll()
+    .then(user=> {
+        const userList = user.map(user => user.dataValues)
+        res.send(userList)
+    });
 })
 
 module.exports = router;
